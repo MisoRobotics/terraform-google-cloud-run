@@ -124,6 +124,7 @@ resource "google_cloud_run_service" "default" {
           "run.googleapis.com/cloudsql-instances"    = join(",", var.cloudsql_connections)
           "autoscaling.knative.dev/maxScale"         = var.max_instances
           "autoscaling.knative.dev/minScale"         = var.min_instances
+          "run.googleapis.com/launch-stage"          = local.launch_stage
           "run.googleapis.com/execution-environment" = var.execution_environment
         },
         local.vpc_access.connector == null ? {} : {
